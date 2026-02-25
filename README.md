@@ -19,7 +19,7 @@ paths = np.empty((n_steps + 1, n_paths))
 paths[0] = S0
 paths[1:] = S0 * np.exp(np.cumsum(increments, axis=0))
 
-# Create the plot
+# Create the plot (tutti i comandi PRIMA di show)
 time_grid = np.linspace(0, T, n_steps + 1)
 
 plt.figure(figsize=(10, 6))
@@ -28,6 +28,9 @@ plt.title("Simulated GBM Stock Price Paths")
 plt.xlabel("Time (years)")
 plt.ylabel("Stock Price")
 plt.grid(True, alpha=0.3)
+
+# MOSTRA IL GRAFICO (UNA SOLA VOLTA, ALLA FINE)
+plt.show()
 
 # MOSTRA IL GRAFICO (UNA SOLA VOLTA, ALLA FINE)
 plt.show()
