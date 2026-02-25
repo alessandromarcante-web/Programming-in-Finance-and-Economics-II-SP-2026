@@ -1,25 +1,35 @@
-# Programming-in-Finance-and-Economics-II-SP-2026
-# Programming in Finance and Economics II - SP 2026
+Code
 
-## Descrizione
-Questo repository contiene i materiali e gli esercizi per il corso di 
-Programming in Finance and Economics II (anno accademico 2025/2026).
+import numpy as np
 
-## Contenuti
-- Esercitazioni pratiche
-- Progetti
-- Appunti delle lezioni
+# Parameters
+S0 = 100.0 # initial price
+mu = 0.08 # drift
+sigma = 0.2 # volatility
+T = 1.0 # years
+n_steps = 20
+n_paths = 100
 
-## Strumenti utilizzati
-- Python
-- Git & GitHub
-- VS Code
-- LaTeX
+dt = T / n_steps
 
-## Come contribuire
-1. Fai un fork del repository
-2. Crea un branch per le tue modifiche
-3. Apri una Pull Request
+# Simulate GBM paths
+Z = np.random.normal(size=(n_steps, n_paths))
+increments = (mu - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * Z
 
-## Licenza
-...
+paths = np.empty((n_steps + 1, n_paths))
+paths[0] = S0
+paths[1:] = S0 * np.exp(np.cumsum(increments, axis=0))
+
+paths
+
+import matplotlib.pyplot as plt
+
+time_grid = np.linspace(0, T, n_steps + 1)
+
+plt.figure(figsize=(10, 6))
+plt.plot(time_grid, paths, linewidth=1, alpha=0.7)
+plt.title("Simulated GBM Stock Price Paths")
+plt.xlabel("Time (years)")
+plt.ylabel("Stock Price")
+plt.grid(True, alpha=0.3)
+plt.show()
