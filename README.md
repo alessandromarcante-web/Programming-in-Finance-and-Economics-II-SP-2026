@@ -28,6 +28,8 @@ time_grid = np.linspace(0, T, n_steps + 1)
 
 plt.figure(figsize=(10, 6))
 plt.plot(time_grid, paths, linewidth=1, alpha=0.7)
+
+plt.show()  # Forza la visualizzazione
 plt.title("Simulated GBM Stock Price Paths")
 plt.xlabel("Time (years)")
 plt.ylabel("Stock Price")
